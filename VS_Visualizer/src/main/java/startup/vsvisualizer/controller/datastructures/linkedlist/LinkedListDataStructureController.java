@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/data-structures/linked-list")
-@CrossOrigin(origins = "https://visualizer-frontend-production-9da8.up.railway.app")
+@CrossOrigin(origins = "visualizer-frontend-production-9da8.up.railway.app")
 public class LinkedListDataStructureController {
 
     @Autowired

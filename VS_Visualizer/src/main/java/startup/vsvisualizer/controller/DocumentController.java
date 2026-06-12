@@ -10,7 +10,7 @@ import startup.vsvisualizer.service.LeaderboardService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://visualizer-frontend-production-9da8.up.railway.app", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.OPTIONS})
+@CrossOrigin(origins = "visualizer-frontend-production-9da8.up.railway.app", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class DocumentController {
 
     @Autowired

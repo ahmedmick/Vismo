@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/array")
-@CrossOrigin(origins = "https://visualizer-frontend-production-9da8.up.railway.app")
+@CrossOrigin(origins = "visualizer-frontend-production-9da8.up.railway.app")
 public class ArrayController {
 
     @Autowired
