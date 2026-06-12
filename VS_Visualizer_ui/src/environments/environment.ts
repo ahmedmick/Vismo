@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:9090/api'
+  apiUrl: 'visualizer-backend-production-9401.up.railway.app',
 };
