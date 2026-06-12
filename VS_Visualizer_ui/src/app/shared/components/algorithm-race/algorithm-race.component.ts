@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { interval, Subscription } from 'rxjs';
+import { environment } from '../../../../environments/environment.production';
 
 interface Document {
   id: number;
@@ -120,7 +121,7 @@ export class AlgorithmRaceComponent implements OnInit, OnDestroy {
 
   fetchRaceData(): void {
     const count = Math.max(5, Math.min(1000, this.elementCount || 50));
-    this.http.get<Document[]>(`http://localhost:9090/api/documents/race-data?count=${count}`).subscribe({
+    this.http.get<Document[]>(`${environment.apiUrl}/api/documents/race-data?count=${count}`).subscribe({
       next: (docs) => {
         const scores = docs.map(d => d.relevanceScore);
         this.bubbleArray.set([...scores]);

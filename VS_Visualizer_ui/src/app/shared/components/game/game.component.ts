@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription, interval } from 'rxjs';
+import { environment } from '../../../../environments/environment.production';
 
 interface Document {
   id: number;
@@ -82,7 +83,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   fetchGameData(): void {
-    this.http.get<Document[]>('http://localhost:9090/api/documents/game-data').subscribe({
+    this.http.get<Document[]>(`${environment.apiUrl}/api/documents/game-data`).subscribe({
       next: (docs) => {
         this.originalDocuments = JSON.parse(JSON.stringify(docs));
         this.userDocuments.set(docs);
@@ -94,7 +95,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   fetchLeaderboard(): void {
-    this.http.get<LeaderboardEntry[]>('http://localhost:9090/api/leaderboard').subscribe({
+    this.http.get<LeaderboardEntry[]>(`${environment.apiUrl}/api/leaderboard`).subscribe({
       next: (entries) => this.leaderboard.set(entries),
       error: (err) => console.error('Error fetching leaderboard:', err),
     });
@@ -105,14 +106,14 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   clearLeaderboard(): void {
-    this.http.delete('http://localhost:9090/api/leaderboard').subscribe({
+    this.http.delete(`${environment.apiUrl}/api/leaderboard`).subscribe({
       next: () => this.leaderboard.set([]),
       error: (err) => console.error('Error clearing leaderboard:', err),
     });
   }
 
   deleteEntry(id: number): void {
-    this.http.delete(`http://localhost:9090/api/leaderboard/${id}`).subscribe({
+    this.http.delete(`${environment.apiUrl}/api/leaderboard/${id}`).subscribe({
       next: () => this.fetchLeaderboard(),
       error: (err) => console.error('Error deleting entry:', err),
     });
@@ -254,7 +255,7 @@ export class GameComponent implements OnInit, OnDestroy {
       wonAgainstAI: this.userWon(),
     };
 
-    this.http.post<LeaderboardEntry>('http://localhost:9090/api/leaderboard', entry).subscribe({
+    this.http.post<LeaderboardEntry>(`${environment.apiUrl}/api/leaderboard`, entry).subscribe({
       next: () => {
         this.fetchLeaderboard();
         this.stopCelebration();

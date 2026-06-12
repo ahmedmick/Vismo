@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../../environments/environment.production';
 
 interface Document {
   id: number;
@@ -34,7 +35,7 @@ export class DocumentSorterComponent implements OnInit {
   }
 
   fetchDocuments(): void {
-    this.http.get<Document[]>('http://localhost:9090/api/documents').subscribe({
+    this.http.get<Document[]>(`${environment.apiUrl}/api/documents`).subscribe({
       next: (docs) => {
         this.originalDocuments = JSON.parse(JSON.stringify(docs));
         this.documents.set(docs);
