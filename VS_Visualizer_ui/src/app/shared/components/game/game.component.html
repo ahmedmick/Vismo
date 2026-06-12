@@ -1,0 +1,200 @@
+<div class="game">
+  <div class="header">
+    <h3>{{ 'GAME.TITLE' | translate }}</h3>
+    <div class="difficulty-buttons">
+      <button
+        mat-stroked-button
+        [class.selected]="difficulty() === 'easy'"
+        (click)="setDifficulty('easy')"
+        class="difficulty-btn easy"
+      >
+        Easy
+      </button>
+      <button
+        mat-stroked-button
+        [class.selected]="difficulty() === 'medium'"
+        (click)="setDifficulty('medium')"
+        class="difficulty-btn medium"
+      >
+        Medium
+      </button>
+      <button
+        mat-stroked-button
+        [class.selected]="difficulty() === 'hard'"
+        (click)="setDifficulty('hard')"
+        class="difficulty-btn hard"
+      >
+        Hard
+      </button>
+    </div>
+    <div class="buttons">
+      <button mat-stroked-button (click)="resetGame()" class="action-button">
+        <mat-icon>refresh</mat-icon>
+        {{ 'GAME.RESET' | translate }}
+      </button>
+      <button
+        mat-raised-button
+        (click)="startGame()"
+        [disabled]="gameStarted()"
+        class="action-button"
+      >
+        <mat-icon>play_arrow</mat-icon>
+        {{ 'GAME.START' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="game-over-banner" *ngIf="gameOver()">
+    <mat-icon *ngIf="userWon()">celebration</mat-icon>
+    <mat-icon *ngIf="!userWon()">sentiment_dissatisfied</mat-icon>
+    <span *ngIf="userWon()">{{ 'GAME.YOU_WON' | translate }}</span>
+    <span *ngIf="!userWon()">{{ 'GAME.AI_WON' | translate }}</span>
+  </div>
+
+  <div class="game-area">
+    <div class="player-section">
+      <div class="section-header">
+        <h4>{{ 'GAME.YOU' | translate }}</h4>
+        <div class="stats">
+          <span [class.active]="gameStarted()"
+            >{{ 'GAME.SWAPS' | translate }}: {{ userSwapCount() }}</span
+          >
+          <span [class.active]="gameStarted()"
+            >{{ 'GAME.TIME' | translate }}: {{ userTime() }}s</span
+          >
+        </div>
+      </div>
+      <div class="bars-container">
+        @for (doc of userDocuments(); track $index) {
+          <div
+            class="bar-wrapper"
+            [class.game-not-started]="!gameStarted()"
+            draggable="true"
+            (dragstart)="onDragStart($event, $index)"
+            (dragover)="onDragOver($event, $index)"
+            (drop)="onDrop($event, $index)"
+            (dragend)="onDragEnd()"
+            [class.dragging]="dragStartIndex() === $index"
+            [class.drag-over]="dragOverIndex() === $index && dragStartIndex() !== $index"
+            [style.transform]="getDragTransform($index)"
+          >
+            <div class="bar" [style.height.%]="doc.relevanceScore">
+              <span class="bar-value">{{ doc.relevanceScore }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="vs-divider">
+      <span>VS</span>
+    </div>
+
+    <div class="ai-section">
+      <div class="section-header">
+        <h4>{{ 'GAME.AI' | translate }}</h4>
+        <div class="stats">
+          <span>{{ 'GAME.SWAPS' | translate }}: {{ aiSwapCount() }}</span>
+          <span>{{ 'GAME.TIME' | translate }}: {{ aiTime() }}s</span>
+        </div>
+      </div>
+      <div class="bars-container">
+        @for (doc of aiDocuments(); track $index) {
+          <div
+            class="bar-wrapper ai-bar"
+            [class.complete]="isAIComplete()"
+            [class.easy-glow]="difficulty() === 'easy' && gameStarted()"
+            [class.medium-glow]="difficulty() === 'medium' && gameStarted()"
+            [class.hard-glow]="difficulty() === 'hard' && gameStarted()"
+          >
+            <div class="bar" [style.height.%]="doc.relevanceScore">
+              <span class="bar-value">{{ doc.relevanceScore }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="name-input" *ngIf="gameOver() && (isUserComplete() || userWon())">
+    <mat-form-field appearance="outline" class="name-entry">
+      <mat-label>{{ 'GAME.ENTER_NAME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="playerName" />
+    </mat-form-field>
+    <button mat-raised-button (click)="saveResult()" class="save-button">
+      {{ 'GAME.SAVE' | translate }}
+    </button>
+  </div>
+
+  <div class="leaderboard">
+    <div class="leaderboard-header">
+      <h4>{{ 'GAME.LEADERBOARD' | translate }}</h4>
+    </div>
+    <table *ngIf="leaderboard().length > 0">
+      <thead>
+        <tr>
+          <th>{{ 'GAME.RANK' | translate }}</th>
+          <th>{{ 'GAME.NAME' | translate }}</th>
+          <th>{{ 'GAME.TIME' | translate }}</th>
+          <th>{{ 'GAME.SWAPS' | translate }}</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (entry of leaderboard(); track $index) {
+          <tr>
+            <td>#{{ $index + 1 }}</td>
+            <td>{{ entry.playerName }}</td>
+            <td>{{ entry.timeToSort }}s</td>
+            <td>{{ entry.swapCount }}</td>
+            <td>
+              <button mat-icon-button (click)="deleteEntry(entry.id)" class="clear-btn">
+                <mat-icon
+                  [color]="hoveredRowId() === entry.id ? 'warn' : 'black'"
+                  (mouseover)="hoveredRowId.set(entry.id)"
+                  (mouseout)="hoveredRowId.set(null)"
+                >
+                  delete
+                </mat-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <p *ngIf="leaderboard().length === 0" class="empty-leaderboard">
+      No scores yet. Be the first to play!
+    </p>
+  </div>
+
+  @if (gameOver() && userWon()) {
+    <div class="celebration-overlay">
+      <canvas #fireworksCanvas class="fireworks-canvas"></canvas>
+      <div class="win-card">
+        <h1 class="win-title">You Beat the Algorithm!</h1>
+        <p class="win-subtitle">Outstanding performance!</p>
+        <div class="win-stats">
+          <div class="stat-item">
+            <span class="stat-value">{{ userTime() }}s</span>
+            <span class="stat-label">Time</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">{{ userSwapCount() }}</span>
+            <span class="stat-label">Swaps</span>
+          </div>
+        </div>
+        <div class="win-name-input">
+          <mat-form-field appearance="outline" class="name-entry">
+            <mat-label>{{ 'GAME.ENTER_NAME' | translate }}</mat-label>
+            <input matInput [(ngModel)]="playerName" />
+          </mat-form-field>
+        </div>
+        <div class="win-actions">
+          <button mat-raised-button class="play-again-btn" (click)="resetGame()">Play Again</button>
+          <button mat-stroked-button class="save-btn" (click)="saveResult()">Save Score</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

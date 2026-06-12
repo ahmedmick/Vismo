@@ -1,0 +1,340 @@
+<div class="array-page">
+  <h1 class="page-title">Array Data Structure</h1>
+
+  <div class="content-container">
+    <!-- Left Panel: Operation Controls -->
+    <div class="control-panel">
+      <mat-form-field appearance="outline" class="operation-select">
+        <mat-label>Select Operation</mat-label>
+        <mat-select
+          [(value)]="selectedOperation"
+          (selectionChange)="onOperationChange()"
+          style="color: var(--text-primary)"
+        >
+          @for (op of operations; track op.value) {
+            <mat-option [value]="op.value">{{ op.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      @if (showIndexInput) {
+        <mat-form-field
+          appearance="outline"
+          class="index-input"
+          [class.mat-mdc-form-field-invalid]="indexInputCtrl.invalid && indexInputCtrl.touched"
+        >
+          <mat-label>Index</mat-label>
+          <input
+            matInput
+            name="indexInput"
+            [(ngModel)]="indexInput"
+            type="number"
+            placeholder="0"
+            required
+            #indexInputCtrl="ngModel"
+          />
+        </mat-form-field>
+      }
+
+      @if (showValueInput) {
+        <mat-form-field
+          appearance="outline"
+          class="value-input"
+          [class.mat-mdc-form-field-invalid]="valueInputCtrl.invalid && valueInputCtrl.touched"
+        >
+          <mat-label>Value</mat-label>
+          <input
+            matInput
+            name="valueInput"
+            [(ngModel)]="valueInput"
+            type="number"
+            placeholder="0"
+            required
+            #valueInputCtrl="ngModel"
+          />
+        </mat-form-field>
+      }
+
+      <div class="button-group">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="visualizeOperation()"
+          [disabled]="isLoading"
+        >
+          <span *ngIf="!isLoading">Visualize</span>
+          <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+        </button>
+      </div>
+
+      <mat-form-field
+        appearance="outline"
+        class="array-input"
+        [class.mat-mdc-form-field-invalid]="arrayInputCtrl.invalid && arrayInputCtrl.touched"
+      >
+        <mat-label>Array (comma-separated)</mat-label>
+        <input
+          matInput
+          name="arrayInput"
+          [(ngModel)]="arrayInput"
+          (keyup.enter)="previewArray()"
+          placeholder="e.g., 5, 3, 8, 1, 2"
+          required
+          #arrayInputCtrl="ngModel"
+        />
+        <mat-icon
+          matSuffix
+          [matTooltip]="hintText"
+          matTooltipPosition="right"
+          matTooltipClass="multiline-tooltip"
+          style="cursor: pointer; color: var(--text-secondary)"
+        >
+          info_outline
+        </mat-icon>
+      </mat-form-field>
+
+      <div class="button-group">
+        <button mat-stroked-button (click)="previewArray()">Show Array</button>
+      </div>
+
+      <div class="fields-row">
+        <mat-form-field
+          appearance="outline"
+          class="array-input"
+          [class.mat-mdc-form-field-invalid]="
+            generateCountCtrl.invalid && generateCountCtrl.touched
+          "
+        >
+          <mat-label>Array Length</mat-label>
+          <input
+            matInput
+            type="number"
+            name="generateCount"
+            [(ngModel)]="generateCount"
+            min="2"
+            max="100"
+            placeholder="10"
+            required
+            #generateCountCtrl="ngModel"
+          />
+          <mat-icon
+            matSuffix
+            [matTooltip]="countHintText"
+            matTooltipPosition="right"
+            matTooltipClass="multiline-tooltip"
+            style="cursor: pointer; color: var(--text-secondary)"
+          >
+            info_outline
+          </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          class="array-input"
+          [class.mat-mdc-form-field-invalid]="decimalCountCtrl.invalid && decimalCountCtrl.touched"
+        >
+          <mat-label>Decimal Places</mat-label>
+          <input
+            matInput
+            type="number"
+            name="decimalCount"
+            [ngModel]="decimalCount"
+            (ngModelChange)="decimalCount = $event"
+            [disabled]="selectedType !== 'float'"
+            min="0"
+            max="5"
+            placeholder="0"
+            required
+            #decimalCountCtrl="ngModel"
+          />
+          <mat-icon
+            matSuffix
+            [matTooltip]="decimalsHintText"
+            matTooltipPosition="right"
+            matTooltipClass="multiline-tooltip"
+            style="cursor: pointer; color: var(--text-secondary)"
+          >
+            info_outline
+          </mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="fields-row">
+        <mat-form-field
+          appearance="outline"
+          class="array-input"
+          [class.mat-mdc-form-field-invalid]="
+            (minValueInput.invalid && minValueInput.touched) || minValue >= maxValue
+          "
+        >
+          <mat-label>Min Value</mat-label>
+          <input
+            matInput
+            type="number"
+            name="minValue"
+            required
+            [(ngModel)]="minValue"
+            [disabled]="selectedType === 'char'"
+            placeholder="1000"
+            min="-1000000"
+            max="{{ maxValue }}"
+            #minValueInput="ngModel"
+          />
+          <mat-icon
+            matSuffix
+            [matTooltip]="minValueHintText"
+            matTooltipPosition="right"
+            matTooltipClass="multiline-tooltip"
+            style="cursor: pointer; color: var(--text-secondary)"
+          >
+            info_outline
+          </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          class="array-input"
+          [class.mat-mdc-form-field-invalid]="
+            (maxValueInput.invalid && maxValueInput.touched) || minValue >= maxValue
+          "
+        >
+          <mat-label>Max Value</mat-label>
+          <input
+            matInput
+            type="number"
+            name="maxValue"
+            [(ngModel)]="maxValue"
+            [disabled]="selectedType === 'char'"
+            placeholder="10000"
+            required
+            min="{{ minValue }}"
+            max="1000000"
+            #maxValueInput="ngModel"
+          />
+          <mat-icon
+            matSuffix
+            [matTooltip]="maxValueHintText"
+            matTooltipPosition="right"
+            matTooltipClass="multiline-tooltip"
+            style="cursor: pointer; color: var(--text-secondary)"
+          >
+            info_outline
+          </mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="type-selector">
+        <label class="type-label">Data Type:</label>
+        <mat-radio-group [(ngModel)]="selectedType" class="type-radio-group">
+          @for (type of typeOptions; track type.value) {
+            <mat-radio-button [value]="type.value" class="type-radio">
+              {{ type.label }}
+            </mat-radio-button>
+          }
+        </mat-radio-group>
+      </div>
+
+      <button mat-raised-button class="example-raised-button" (click)="generateRandomArray()">
+        Generate Random Array
+      </button>
+
+      <div class="button-group">
+        <button mat-stroked-button class="example-stroked-button-clear" (click)="clearArray()">
+          Clear
+        </button>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+    </div>
+
+    <!-- Right Panel: Array Visualizer -->
+    <div class="right-panel">
+      <!-- Array Visualizer -->
+      <div class="visualizer-container">
+        <div (mouseenter)="showHintPopup = true" (mouseleave)="showHintPopup = false"> 
+          <button mat-button class="hint-button">
+            <svg class="hint-icon" viewBox="0 -3 24 26" fill="currentColor">
+              <!-- Light rays from above and sides -->
+              <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <line x1="12" y1="-3" x2="12" y2="0" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="2.22" y1="2.22" x2="4.64" y2="4.64" />
+                <line x1="20.36" y1="5.24" x2="22.98" y2="3.22" />
+              </g>
+              <!-- Lightbulb -->
+              <path
+                d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"
+              />
+            </svg>
+            <span class="hint-label">Hint</span>
+          </button>
+          @if (showHintPopup) {
+            <div class="hint-popup">
+              <div class="hint-popup-header" [dir]="languageService.isArabic ? 'rtl' : 'ltr'">
+                <span>{{ 'ARRAY.HINT_HEADER.' + selectedOperation | translate }}</span>
+              </div>
+              <div class="hint-popup-content" [dir]="languageService.isArabic ? 'rtl' : 'ltr'">{{ getHint() }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="array-boxes" [style.--box-width.px]="boxWidth">
+          @for (value of displayArray; track $index) {
+            <div class="array-box-wrapper">
+              <div class="index-label">[{{ $index }}]</div>
+              <div
+                class="array-box"
+                [class.box-highlighted]="isHighlighted($index) || isBoxHighlighted($index)"
+                [class.box-found]="isFound($index)"
+                (click)="setBoxHighlighted($index)"
+              >
+                <span class="box-value">{{ value }}</span>
+              </div>
+              <div class="box-info">
+                @if (isBoxHighlighted($index)) {
+                  <div class="pointer_wrapper">
+                    <svg width="40" height="40" viewBox="0 0 24 24" class="pointer_body">
+                      <path
+                        d="M12 4V20M12 4L8 8M12 4L16 8"
+                        fill="none"
+                        stroke="var(--accent-primary)"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  @if (selectedType === 'char') {
+                    <div class="address-char" [class.active]="isBoxHighlighted($index)">
+                      {{ getAddress($index, 1) }}
+                    </div>
+                  }
+                  @if (selectedType === 'int') {
+                    <div class="address-int" [class.active]="isBoxHighlighted($index)">
+                      {{ getAddress($index, 4) }}
+                    </div>
+                  }
+                  @if (selectedType === 'float') {
+                    <div class="address-float" [class.active]="isBoxHighlighted($index)">
+                      {{ getAddress($index, 8) }}
+                    </div>
+                  }
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <!-- Step Explanation -->
+      <div>
+        <app-step-explanation></app-step-explanation>
+      </div>
+    </div>
+  </div>
+
+  <!-- Control Panel -->
+  <app-control-panel></app-control-panel>
+</div>

@@ -1,0 +1,197 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: var(--accent-primary);
+  font-size: 24px;
+}
+
+.close-button {
+  color: var(--text-secondary);
+}
+
+.close-button:hover {
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.intro-text {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.example-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.example-card:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-hover);
+}
+
+.example-card.active {
+  border-color: var(--accent-primary);
+  background-color: rgba(0, 188, 212, 0.1);
+}
+
+.example-card mat-icon {
+  color: var(--accent-primary);
+}
+
+.example-card span {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.demo-section {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.demo-section h3 {
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+}
+
+.demo-section > p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.run-button {
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+  padding: 8px 24px;
+}
+
+.run-button:hover:not(:disabled) {
+  background-color: var(--accent-secondary);
+}
+
+.run-button:disabled {
+  opacity: 0.5;
+}
+
+.run-button mat-icon {
+  margin-right: 4px;
+}
+
+.result-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.result-section h4 {
+  margin: 0 0 12px 0;
+  color: var(--accent-primary);
+}
+
+.result-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background-color: var(--bg-card);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.rank {
+  font-weight: 600;
+  color: var(--accent-primary);
+  min-width: 40px;
+}
+
+.value {
+  color: var(--text-primary);
+}
+
+.explanation {
+  margin-top: 16px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 16px;
+  }
+}

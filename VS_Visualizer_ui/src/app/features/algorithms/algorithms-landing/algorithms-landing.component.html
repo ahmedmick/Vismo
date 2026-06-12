@@ -1,0 +1,21 @@
+<div class="landing-container">
+  <h1 class="page-title">Algorithms</h1>
+  <p class="page-subtitle">Explore how algorithms process and manipulate data</p>
+  
+  <div class="cards-grid">
+    <a mat-card class="category-card info-card" *ngFor="let category of algorithmCategories" [routerLink]="category.route">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="card-icon">{{ category.icon }}</mat-icon>
+          {{ category.name }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="card-description">{{ category.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent">Explore</button>
+      </mat-card-actions>
+    </a>
+  </div>
+</div>

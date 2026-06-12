@@ -1,0 +1,65 @@
+<div class="debugger-console">
+  <div class="header">
+    <h3>{{ 'DEBUGGER_CONSOLE.TITLE' | translate }}</h3>
+    <div class="buttons">
+      <button mat-raised-button (click)="prevStep()" [disabled]="currentStepIndex() === 0" class="action-button primary">
+        <mat-icon>skip_previous</mat-icon>
+        {{ 'DEBUGGER_CONSOLE.PREV_STEP' | translate }}
+      </button>
+      <button mat-stroked-button (click)="reset()" class="action-button">
+        <mat-icon>refresh</mat-icon>
+        {{ 'DEBUGGER_CONSOLE.RESET' | translate }}
+      </button>
+      <button mat-raised-button (click)="nextStep()" [disabled]="isComplete()" class="action-button primary">
+        <mat-icon>skip_next</mat-icon>
+        {{ 'DEBUGGER_CONSOLE.NEXT_STEP' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="visualizer-section">
+    <div class="bars-container">
+      @for (score of currentArray(); track $index) {
+        <div class="bar" [style.height.%]="score">
+          <span class="bar-value">{{ score }}</span>
+        </div>
+      }
+    </div>
+    <p class="step-description">{{ steps()[currentStepIndex()]?.description || '' }}</p>
+  </div>
+
+  <div class="console-section">
+    <div class="code-panel">
+      <h4>{{ 'DEBUGGER_CONSOLE.CODE' | translate }}</h4>
+      <div class="code-lines">
+        @for (line of pseudoCode; track $index) {
+          <div 
+            class="code-line"
+            [class.highlighted]="currentCodeLine() === $index + 1"
+          >
+            <span class="line-number">{{ $index + 1 }}</span>
+            <span class="code-text">{{ line }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="log-panel">
+      <h4>{{ 'DEBUGGER_CONSOLE.LOG' | translate }}</h4>
+      <div class="log-entries" #logContainer>
+        @for (log of visibleLogs(); track $index) {
+          <div class="log-entry" [class.current]="$index === currentStepIndex()">
+            <mat-icon>info</mat-icon>
+            <span>Step {{ $index + 1 }}: {{ log }}</span>
+          </div>
+        }
+        @if (isComplete()) {
+          <div class="log-entry complete">
+            <mat-icon>check_circle</mat-icon>
+            <span>{{ 'DEBUGGER_CONSOLE.SORTED' | translate }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<button mat-icon-button (click)="toggle()" class="language-toggle" [matTooltip]="currentLang === 'en' ? 'Switch to Arabic' : 'Switch to English'">
+  <mat-icon>language</mat-icon>
+  <span class="lang-code">{{ currentLang === 'en' ? 'EN' : 'AR' }}</span>
+</button>

@@ -1,0 +1,24 @@
+<div class="landing-container">
+  <h1 class="page-title">Sorting Algorithms</h1>
+  <p class="page-subtitle">Visualize how different sorting algorithms arrange elements in order</p>
+  
+  <div class="cards-grid">
+    <a mat-card class="algorithm-card" *ngFor="let algorithm of sortingAlgorithms" [routerLink]="algorithm.route" [class.disabled]="!algorithm.available">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="card-icon">{{ algorithm.icon }}</mat-icon>
+          {{ algorithm.name }}
+          <span *ngIf="!algorithm.available" class="coming-soon">Coming Soon</span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="card-description">{{ algorithm.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!algorithm.available">
+          {{ algorithm.available ? 'Visualize' : 'Coming Soon' }}
+        </button>
+      </mat-card-actions>
+    </a>
+  </div>
+</div>

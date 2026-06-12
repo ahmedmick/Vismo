@@ -1,0 +1,25 @@
+.language-toggle {
+  color: #00bcd4;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.language-toggle:hover {
+  background-color: rgba(0, 188, 212, 0.1);
+}
+
+.lang-code {
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* Light mode */
+.light-mode .language-toggle {
+  color: #0097a7;
+}
+
+.light-mode .language-toggle:hover {
+  background-color: rgba(0, 151, 167, 0.1);
+}

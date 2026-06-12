@@ -1,0 +1,135 @@
+/* style for home page */
+.home-container {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* style for home title */
+.home-title {
+  color: var(--text-primary);
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.home-title:hover {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* style for home subtitle */
+.home-subtitle {
+  color: var(--text-secondary);
+  font-size: 20px;
+  margin-bottom: 48px;
+  text-align: center;
+  max-width: 800px;
+}
+
+.cards-container {
+  display: flex;
+  gap: 32px;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section-card {
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  height: 160px;
+  padding-top: 20px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.section-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+  background-color: var(--bg-hover);
+  transition: color 0.3s ease;
+}
+
+.info-card {
+  border-left: 4px solid var(--accent-primary);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+
+.section-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+
+.info-card .card-icon {
+  color: var(--accent-primary);
+}
+
+
+.card-description {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+a{
+  align-items: center;
+  text-align: center;
+  height: 160px;
+}
+
+a mat-card-header mat-card-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+a mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.section-card mat-card-actions {
+  padding: 16px 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 32px;
+  }
+
+  .home-subtitle {
+    font-size: 16px;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-card {
+    min-width: 100%;
+  }
+}

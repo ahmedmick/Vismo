@@ -1,0 +1,18 @@
+.theme-toggle {
+  color: #00bcd4;
+  cursor: pointer;
+  
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0, 188, 212, 0.1);
+}
+
+/* Light mode */
+.light-mode .theme-toggle {
+  color: #0097a7;
+}
+
+.light-mode .theme-toggle:hover {
+  background-color: rgba(0, 151, 167, 0.1);
+}

@@ -1,0 +1,52 @@
+<div class="control-panel" [class.collapsed]="isCollapsed()">
+  <button class="collapse-toggle" (click)="toggleCollapse()" [attr.aria-label]="isCollapsed() ? 'Expand panel' : 'Collapse panel'">
+    <mat-icon>{{ isCollapsed() ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+  </button>
+
+  <div class="control-panel-content" [class.hidden]="isCollapsed()">
+    <div class="speed-control">
+      <div class="speed-label-row">
+        <span class="speed-label">{{ 'CONTROL_PANEL.SPEED' | translate }}</span>
+      </div>
+      <div class="slider-row">
+        <span class="min-speed-value">1x</span>
+        <mat-slider
+          min="1"
+          max="5"
+          step="1"
+          class="speed-slider"
+          showTickMarks
+          discrete
+          [displayWith]="formatLabel"
+          [style.--slider-color]="currentColor()"
+        >
+          <input matSliderThumb [value]="speedMultiplier()" (valueChange)="onSpeedChange($event)" />
+        </mat-slider>
+        <span class="max-speed-value">5x</span>
+      </div>
+    </div>
+
+    <div class="control-buttons">
+      <button mat-icon-button (click)="previousStep()" [disabled]="!canGoPrev()" class="nav-button">
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+
+      <button mat-fab (click)="isPlaying() ? pause() : play()" class="play-button">
+        <mat-icon>{{ isPlaying() ? 'pause' : 'play_arrow' }}</mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="nextStep()" [disabled]="!canGoNext()" class="nav-button">
+        <mat-icon>skip_next</mat-icon>
+      </button>
+
+      <button mat-button (click)="reset()" class="reset-button">
+        <mat-icon>refresh</mat-icon>
+        {{ 'CONTROL_PANEL.RESET' | translate }}
+      </button>
+    </div>
+
+    <div class="step-counter">
+      {{ stepCounter }}
+    </div>
+  </div>
+</div>

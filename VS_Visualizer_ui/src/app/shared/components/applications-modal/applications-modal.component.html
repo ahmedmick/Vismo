@@ -1,0 +1,65 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ 'APPLICATIONS.TITLE' | translate }}</h2>
+      <button mat-icon-button (click)="onClose()" class="close-button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <p class="intro-text">{{ 'APPLICATIONS.INTRO' | translate }}</p>
+
+      <div class="examples-grid">
+        <div 
+          *ngFor="let example of examples" 
+          class="example-card"
+          [class.active]="selectedExample().id === example.id"
+          (click)="selectExample(example)"
+        >
+          <mat-icon *ngIf="example.id === 'scores'">grade</mat-icon>
+          <mat-icon *ngIf="example.id === 'names'">person</mat-icon>
+          <mat-icon *ngIf="example.id === 'prices'">attach_money</mat-icon>
+          <mat-icon *ngIf="example.id === 'leaderboard'">emoji_events</mat-icon>
+          <span>{{ example.titleKey | translate }}</span>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>{{ selectedExample().titleKey | translate }}</h3>
+        <p>{{ selectedExample().descriptionKey | translate }}</p>
+
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>{{ 'APPLICATIONS.INPUT_LABEL' | translate }}</mat-label>
+          <input 
+            matInput 
+            [(ngModel)]="userInput" 
+            [placeholder]="selectedExample().placeholderKey | translate"
+            [type]="selectedExample().inputType"
+          />
+        </mat-form-field>
+
+        <button 
+          mat-raised-button 
+          class="run-button" 
+          (click)="runBubbleSort()"
+          [disabled]="!userInput.trim()"
+        >
+          <mat-icon>play_arrow</mat-icon>
+          {{ 'APPLICATIONS.RUN_SORT' | translate }}
+        </button>
+
+        <div class="result-section" *ngIf="isSorted()">
+          <h4>{{ 'APPLICATIONS.RESULT' | translate }}</h4>
+          <div class="result-box">
+            <div class="result-item" *ngFor="let item of sortedResult; let i = index">
+              <span class="rank">#{{ i + 1 }}</span>
+              <span class="value">{{ item }}</span>
+            </div>
+          </div>
+          <p class="explanation">{{ 'APPLICATIONS.EXPLANATION' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

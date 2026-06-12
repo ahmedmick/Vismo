@@ -1,0 +1,133 @@
+{
+  "HEADER": {
+    "HOME": "الرئيسية",
+    "DATA_STRUCTURES": "هياكل البيانات",
+    "ALGORITHMS": "الخوارزميات"
+  },
+  "BUBBLE_SORT": {
+    "GENERATE_RANDOM_ARRAY": "توليد مصفوفة عشوائية",
+    "ENTER_ARRAY": "أدخل المصفوفة",
+    "SHOW_ARRAY": "إظهار المصفوفة",
+    "ARRAY_LENGTH": "طول المصفوفة",
+    "DECIMAL_PLACES": "عدد المنازل العشرية",
+    "MIN_VALUE": "الحد الأدنى",
+    "MAX_VALUE": "الحد الأقصى",
+    "GENERATE": "توليد",
+    "CLEAR": "مسح",
+    "ARRAY_SIZE_HINT": "يجب أن يكون حجم المصفوفة بين 2 و 100",
+    "DECIMAL_HINT": "عدد المنازل العشرية (0-5)",
+    "MIN_VALUE_HINT": "الحد الأدنى للمصفوفة",
+    "MAX_VALUE_HINT": "الحد الأقصى للمصفوفة"
+  },
+  "CONTROL_PANEL": {
+    "SPEED": "السرعة",
+    "RESET": "إعادة تعيين",
+    "STEP": "خطوة"
+  },
+  "STEP_EXPLANATION": {
+    "STEP": "الخطوة",
+    "OF": "من"
+  },
+  "VALIDATION": {
+    "INVALID_ARRAY": "إدخال غير صالح لمصفوفة صحيحة",
+    "ARRAY_SIZE_ERROR": "يجب أن يكون حجم المصفوفة بين 2 و 50"
+  },
+  "APPLICATIONS": {
+    "TITLE": "تطبيقات",
+    "INTRO": "ترتيب المصفوفات له تطبيقات عملية في مجالات متعددة. هذه التطبيقات تشمل أمثلة متعددة:",
+    "TEST_SCORES_TITLE": "درجات الاختبار",
+    "TEST_SCORES_DESC": "ترتيب درجات الطلاب وتحديد الترتيب.",
+    "NAMES_TITLE": "ترتيب الأسماء",
+    "NAMES_DESC": "ترتيب الأسماء أبجدياً وتنظيم القوائم.",
+    "PRICES_TITLE": "ترتيب الأسعار",
+    "PRICES_DESC": "ترتيب أسعار المنتجات من الأرخص للأغلى.",
+    "LEADERBOARD_TITLE": "لوحة المتصدرين",
+    "LEADERBOARD_DESC": "ترتيب النقاط لأعلى اللاعبين.",
+    "SCORES_PLACEHOLDER": "85, 92, 78, 90, 88",
+    "NAMES_PLACEHOLDER": "John, Alice, Bob, Carol",
+    "PRICES_PLACEHOLDER": "29.99, 15.50, 42.00, 10.00",
+    "LEADERBOARD_PLACEHOLDER": "150, 200, 175, 225",
+    "INPUT_LABEL": "أدخل القيم",
+    "RUN_SORT": "تشغيل الترتيب",
+    "RESULT": "نتيجة الترتيب",
+    "EXPLANATION": "ابسط خوارزمية ترتيب تعمل بمقارنة العناصر المتجاورة!"
+  },
+  "TABS": {
+    "VISUALIZER": "المصور",
+    "DOCUMENT_SORTER": "مرتب الوثائق",
+    "ALGORITHM_RACE": "سباق الخوارزميات",
+    "DEBUGGER": "المصحح",
+    "GAME": "لعبة التبديل"
+  },
+  "DOCUMENT_SORTER": {
+    "TITLE": "مرتب الوثائق",
+    "RESET": "إعادة تعيين",
+    "PREV_STEP": "الخطوة السابقة",
+    "NEXT_STEP": "الخطوة التالية",
+    "AUTO_SORT": "ترتيب تلقائي",
+    "COMPLETE": "الترتيب الكامل!"
+  },
+  "ALGORITHM_RACE": {
+    "TITLE": "سباق الخوارزميات",
+    "ELEMENTS": "عدد العناصر",
+    "RESET": "إعادة تعيين",
+    "START_RACE": "ابدأ السباق",
+    "BUBBLE_SORT": "ترتيب الفقاعات",
+    "QUICK_SORT": "ترتيب سريع",
+    "QUICK_WINS": "ترتيب سريع فاز!",
+    "BUBBLE_WINS": "ترتيب الفقاعات فاز!",
+    "BUBBLE_TIME": "ترتيب الفقاعات",
+    "QUICK_TIME": "ترتيب سريع"
+  },
+  "DEBUGGER_CONSOLE": {
+    "TITLE": "المصحح",
+    "RESET": "إعادة تعيين",
+    "PREV_STEP": "الخطوة السابقة",
+    "NEXT_STEP": "الخطوة التالية",
+    "CODE": "الكود",
+    "LOG": "السجل",
+    "SORTED": "المصفوفة تم ترتيبها بنجاح!"
+  },
+  "GAME": {
+    "TITLE": "لعبة ترتيب الخوارزمية",
+    "RESET": "إعادة تعيين",
+    "START": "ابدأ اللعبة",
+    "YOU": "أنت",
+    "AI": "الذكاء الاصطناعي",
+    "SWAPS": "المبادلات",
+    "TIME": "الوقت",
+    "YOU_WON": "!لقد هزمت الخوارزمية",
+    "AI_WON": "الذكاء الاصطناعي فاز! حاول مجدداً",
+    "ENTER_NAME": "أدخل اسمك",
+    "SAVE": "حفظ النتيجة",
+    "LEADERBOARD": "جدول المتصدرين",
+    "RANK": "الترتيب",
+    "NAME": "الاسم",
+    "BEAT_AI": "هزمت الذكاء"
+  },
+  "ARRAY": {
+    "HINT_HEADER": {
+      "access": "شرح عنوان الذاكرة",
+      "update": "عملية التحديث",
+      "insert": "عملية الإدراج",
+      "delete": "عملية الحذف",
+      "search": "عملية البحث",
+      "traverse": "عملية العبور"
+    }
+  },
+  "LINKED_LIST": {
+    "HINT_HEADER": {
+      "access": "عملية الوصول",
+      "update": "عملية التحديث",
+      "insert-head": "الإضافة في البداية",
+      "insert-tail": "الإضافة في النهاية",
+      "insert-position": "الإضافة في موقع",
+      "delete-head": "الحذف من البداية",
+      "delete-tail": "الحذف من النهاية",
+      "delete-position": "الحذف من موقع",
+      "search": "عملية البحث",
+      "traverse": "عملية العبور"
+    },
+    "DOUBLY_CIRCULAR": "دائري مزدوج"
+  }
+}

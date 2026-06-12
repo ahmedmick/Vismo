@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <a routerLink="/home">
+    <span class="toolbar-title">Data Structure Visualizer</span>
+  </a>
+  <div class="spacer"></div>
+  <nav class="nav-links">
+    <a mat-button routerLink="/home" routerLinkActive="active">{{ 'HEADER.HOME' | translate }}</a>
+    <a mat-button routerLink="/data-structures" routerLinkActive="active">{{ 'HEADER.DATA_STRUCTURES' | translate }}</a>
+    <a mat-button routerLink="/algorithms" routerLinkActive="active">{{ 'HEADER.ALGORITHMS' | translate }}</a>
+  </nav>
+  <app-language-toggle [style.margin-right]="16 + 'px'"></app-language-toggle>
+  <app-theme-toggle></app-theme-toggle>
+</mat-toolbar>

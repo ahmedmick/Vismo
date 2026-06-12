@@ -1,0 +1,212 @@
+<div class="bubble-sort-page">
+  <h1 class="page-title">Bubble Sort Visualizer</h1>
+
+  <mat-tab-group [(selectedIndex)]="selectedTab" class="app-tabs">
+    <!-- Original Visualizer Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>sort</mat-icon>
+        {{ 'TABS.VISUALIZER' | translate }}
+      </ng-template>
+      
+      <div class="content-container">
+        <div class="input-panel">
+          <mat-form-field appearance="outline" class="array-input">
+            <mat-label>{{ 'BUBBLE_SORT.ENTER_ARRAY' | translate }}</mat-label>
+            <input
+              matInput
+              name="arrayInput"
+              [(ngModel)]="arrayInput"
+              (keyup.enter)="previewArray()"
+              placeholder="{{ 'BUBBLE_SORT.ENTER_ARRAY' | translate }}"
+            />
+            <mat-icon
+              matSuffix
+              [matTooltip]="hintText"
+              matTooltipPosition="right"
+              matTooltipClass="multiline-tooltip"
+              style="cursor: pointer; color: var(--text-secondary)"
+            >
+              info_outline
+            </mat-icon>
+          </mat-form-field>
+
+          <div class="button-group">
+            <button mat-stroked-button class="example-stroked-button" (click)="previewArray()">
+              {{ 'BUBBLE_SORT.SHOW_ARRAY' | translate }}
+            </button>
+          </div>
+
+          <div class="fields-row">
+            <mat-form-field appearance="outline" class="array-input">
+              <mat-label>{{ 'BUBBLE_SORT.ARRAY_LENGTH' | translate }}</mat-label>
+              <input
+                matInput
+                type="number"
+                name="generateCount"
+                [(ngModel)]="generateCount"
+                min="2"
+                max="100"
+                placeholder="10"
+              />
+              <mat-icon
+                matSuffix
+                [matTooltip]="countHintText"
+                matTooltipPosition="right"
+                matTooltipClass="multiline-tooltip"
+                style="cursor: pointer; color: var(--text-secondary)"
+              >
+                info_outline
+              </mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="array-input">
+              <mat-label>{{ 'BUBBLE_SORT.DECIMAL_PLACES' | translate }}</mat-label>
+              <input
+                matInput
+                type="number"
+                name="decimalPlaces"
+                [(ngModel)]="decimalPlaces"
+                min="0"
+                max="5"
+                placeholder="0"
+              />
+              <mat-icon
+                matSuffix
+                [matTooltip]="decimalsHintText"
+                matTooltipPosition="right"
+                matTooltipClass="multiline-tooltip"
+                style="cursor: pointer; color: var(--text-secondary)"
+              >
+                info_outline
+              </mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="fields-row">
+            <mat-form-field appearance="outline" class="array-input">
+              <mat-label>{{ 'BUBBLE_SORT.MIN_VALUE' | translate }}</mat-label>
+              <input
+                matInput
+                type="number"
+                name="minValue"
+                [(ngModel)]="minValue"
+                placeholder="1000"
+              />
+              <mat-icon
+                matSuffix
+                [matTooltip]="minValueHintText"
+                matTooltipPosition="right"
+                matTooltipClass="multiline-tooltip"
+                style="cursor: pointer; color: var(--text-secondary)"
+              >
+                info_outline
+              </mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="array-input">
+              <mat-label>{{ 'BUBBLE_SORT.MAX_VALUE' | translate }}</mat-label>
+              <input matInput type="number" name="maxValue" [(ngModel)]="maxValue" placeholder="1000" />
+              <mat-icon
+                matSuffix
+                [matTooltip]="maxValueHintText"
+                matTooltipPosition="right"
+                matTooltipClass="multiline-tooltip"
+                style="cursor: pointer; color: var(--text-secondary)"
+              >
+                info_outline
+              </mat-icon>
+            </mat-form-field>
+          </div>
+
+          <button mat-raised-button class="example-raised-button" (click)="generateRandomArray()">
+            {{ 'BUBBLE_SORT.GENERATE_RANDOM_ARRAY' | translate }}
+          </button>
+
+          <div class="button-group">
+            <button
+              mat-stroked-button
+              class="example-stroked-button-clear"
+              (click)="clear()"
+              [disabled]="isLoading"
+            >
+              Clear
+            </button>
+          </div>
+
+          <div class="error-message" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+        </div>
+
+        <div class="visualizer-container">
+          <div class="bars-container" [style.justify-content]="barsJustify">
+            @for (element of displayElements; track element.id; let idx = $index) {
+              <div
+                class="bar-wrapper"
+                [style.width.px]="barWidth"
+                [style.min-width.px]="barWidth"
+                [style.transform]="getTransform(element)"
+                [style.transition]="
+                  getTransform(element) ? 'transform ' + swapAnimationDuration + 'ms ease-in-out' : ''
+                "
+              >
+                <div
+                  class="bar"
+                  [style.height.%]="getElementHeight(element)"
+                  [class.bar-highlighted]="isIndexHighlighted(idx)"
+                  [class.bar-swapped]="isIndexSwapped(idx)"
+                  [class.bar-sorted]="isSorted(idx)"
+                >
+                  <span class="bar-value">{{ element.value }}</span>
+                </div>
+              </div>
+            }
+          </div>
+          <div class="explanation-code-container">
+            <app-code-preview [codeLineNumber]="codeLineNumber"></app-code-preview>
+            <app-step-explanation></app-step-explanation>
+          </div>
+        </div>
+      </div>
+
+      <app-control-panel></app-control-panel>
+    </mat-tab>
+
+    <!-- Document Sorter Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>description</mat-icon>
+        {{ 'TABS.DOCUMENT_SORTER' | translate }}
+      </ng-template>
+      <app-document-sorter></app-document-sorter>
+    </mat-tab>
+
+    <!-- Algorithm Race Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>emoji_events</mat-icon>
+        {{ 'TABS.ALGORITHM_RACE' | translate }}
+      </ng-template>
+      <app-algorithm-race></app-algorithm-race>
+    </mat-tab>
+
+    <!-- Debugger Console Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>bug_report</mat-icon>
+        {{ 'TABS.DEBUGGER' | translate }}
+      </ng-template>
+      <app-debugger-console></app-debugger-console>
+    </mat-tab>
+
+    <!-- Game Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>sports_esports</mat-icon>
+        {{ 'TABS.GAME' | translate }}
+      </ng-template>
+      <app-game></app-game>
+    </mat-tab>
+  </mat-tab-group>
+</div>

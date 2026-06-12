@@ -1,0 +1,133 @@
+{
+  "HEADER": {
+    "HOME": "Home",
+    "DATA_STRUCTURES": "Data Structures",
+    "ALGORITHMS": "Algorithms"
+  },
+  "BUBBLE_SORT": {
+    "GENERATE_RANDOM_ARRAY": "Generate Random Array",
+    "ENTER_ARRAY": "Enter array values (e.g. 5, 3, 8, 1)",
+    "SHOW_ARRAY": "Show Array",
+    "ARRAY_LENGTH": "Array Length",
+    "DECIMAL_PLACES": "Decimal Places",
+    "MIN_VALUE": "Min Value",
+    "MAX_VALUE": "Max Value",
+    "GENERATE": "Generate",
+    "CLEAR": "Clear",
+    "ARRAY_SIZE_HINT": "Size must be between 2 and 100",
+    "DECIMAL_HINT": "Number of decimal places (0-5)",
+    "MIN_VALUE_HINT": "Minimum value for random numbers",
+    "MAX_VALUE_HINT": "Maximum value for random numbers"
+  },
+  "CONTROL_PANEL": {
+    "SPEED": "Speed",
+    "RESET": "Reset",
+    "STEP": "Step"
+  },
+  "STEP_EXPLANATION": {
+    "STEP": "Step",
+    "OF": "of"
+  },
+  "VALIDATION": {
+    "INVALID_ARRAY": "Please enter a valid array",
+    "ARRAY_SIZE_ERROR": "Array size must be between 2 and 50"
+  },
+  "APPLICATIONS": {
+    "TITLE": "Applications",
+    "INTRO": "Bubble Sort is useful for small datasets and nearly sorted data. Here are real-world examples where Bubble Sort can be applied:",
+    "TEST_SCORES_TITLE": "Test Scores",
+    "TEST_SCORES_DESC": "Sort student test scores to determine rankings and identify top performers.",
+    "NAMES_TITLE": "Name Sorting",
+    "NAMES_DESC": "Alphabetically sort a list of names for directories, contact lists, or records.",
+    "PRICES_TITLE": "Price Sorting",
+    "PRICES_DESC": "Sort products by price for e-commerce filtering from lowest to highest.",
+    "LEADERBOARD_TITLE": "Leaderboard",
+    "LEADERBOARD_DESC": "Sort competition scores or game results to create a ranking leaderboard.",
+    "SCORES_PLACEHOLDER": "e.g., 85, 92, 78, 90, 88",
+    "NAMES_PLACEHOLDER": "e.g., John, Alice, Bob, Carol",
+    "PRICES_PLACEHOLDER": "e.g., 29.99, 15.50, 42.00, 10.00",
+    "LEADERBOARD_PLACEHOLDER": "e.g., 150, 200, 175, 225",
+    "INPUT_LABEL": "Enter your data",
+    "RUN_SORT": "Run Bubble Sort",
+    "RESULT": "Sorted Result",
+    "EXPLANATION": "The data is now sorted in ascending order using Bubble Sort!"
+  },
+  "TABS": {
+    "VISUALIZER": "Visualizer",
+    "DOCUMENT_SORTER": "Books Sorter",
+    "ALGORITHM_RACE": "Algorithm Race",
+    "DEBUGGER": "Debugger",
+    "GAME": "Swap Game"
+  },
+  "DOCUMENT_SORTER": {
+    "TITLE": "Sort Your Books",
+    "RESET": "Reset",
+    "PREV_STEP": "Previous Step",
+    "NEXT_STEP": "Next Step",
+    "AUTO_SORT": "Auto Sort",
+    "COMPLETE": "Sorting Complete!"
+  },
+  "ALGORITHM_RACE": {
+    "TITLE": "Algorithm Race",
+    "ELEMENTS": "Elements",
+    "RESET": "Reset",
+    "START_RACE": "Start Race",
+    "BUBBLE_SORT": "Bubble Sort",
+    "QUICK_SORT": "Quick Sort",
+    "QUICK_WINS": "Quick Sort Wins!",
+    "BUBBLE_WINS": "Bubble Sort Wins!",
+    "BUBBLE_TIME": "Bubble Sort",
+    "QUICK_TIME": "Quick Sort"
+  },
+  "DEBUGGER_CONSOLE": {
+    "TITLE": "Step-by-Step Debugger",
+    "RESET": "Reset",
+    "PREV_STEP": "Previous Step",
+    "NEXT_STEP": "Next Step",
+    "CODE": "Pseudo-code",
+    "LOG": "Human Log",
+    "SORTED": "Array is fully sorted!"
+  },
+  "GAME": {
+    "TITLE": "Human vs Algorithm",
+    "RESET": "Reset",
+    "START": "Start Game",
+    "YOU": "You",
+    "AI": "AI (Robot)",
+    "SWAPS": "Swaps",
+    "TIME": "Time",
+    "YOU_WON": "You Beat the Algorithm!",
+    "AI_WON": "The Algorithm Won! Try Again",
+    "ENTER_NAME": "Enter your name",
+    "SAVE": "Save Score",
+    "LEADERBOARD": "Leaderboard",
+    "RANK": "Rank",
+    "NAME": "Name",
+    "BEAT_AI": "Beat AI"
+  },
+  "ARRAY": {
+    "HINT_HEADER": {
+      "access": "Memory Address Explanation",
+      "update": "Update Operation",
+      "insert": "Insert Operation",
+      "delete": "Delete Operation",
+      "search": "Search Operation",
+      "traverse": "Traversal Operation"
+    }
+  },
+  "LINKED_LIST": {
+    "HINT_HEADER": {
+      "access": "Access Operation",
+      "update": "Update Operation",
+      "insert-head": "Insert at Head",
+      "insert-tail": "Insert at Tail",
+      "insert-position": "Insert at Position",
+      "delete-head": "Delete at Head",
+      "delete-tail": "Delete at Tail",
+      "delete-position": "Delete at Position",
+      "search": "Search Operation",
+      "traverse": "Traversal Operation"
+    },
+    "DOUBLY_CIRCULAR": "Doubly Circular"
+  }
+}

@@ -1,0 +1,33 @@
+.page {
+  min-height: 100vh;
+  background-color: #0a1929;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  color: #26a69a;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 48px;
+}
+
+.coming-soon-container {
+  text-align: center;
+}
+
+.coming-soon-icon {
+  font-size: 96px;
+  width: 96px;
+  height: 96px;
+  color: #26a69a;
+  margin-bottom: 24px;
+}
+
+.coming-soon-title {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 600;
+}

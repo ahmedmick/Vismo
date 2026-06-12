@@ -1,0 +1,21 @@
+<div class="landing-container">
+  <h1 class="page-title">Data Structures</h1>
+  <p class="page-subtitle">Explore how different data structures store and organize information</p>
+  
+  <div class="cards-grid">
+    <a mat-card class="structure-card info-card" *ngFor="let structure of dataStructures" [routerLink]="structure.route">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="card-icon">{{ structure.icon }}</mat-icon>
+          {{ structure.name }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="card-description">{{ structure.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Visualize</button>
+      </mat-card-actions>
+    </a>
+  </div>
+</div>

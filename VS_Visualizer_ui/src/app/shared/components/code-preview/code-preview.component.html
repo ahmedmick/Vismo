@@ -1,0 +1,29 @@
+<div class="code-preview-container">
+  <div class="language-selector">
+    <mat-form-field appearance="outline" class="language-select" [class]="'language-select lang-' + selectedLanguage()">
+      <mat-select [value]="selectedLanguage()" (selectionChange)="onLanguageChange($event.value)">
+        @for (lang of languages; track lang.value) {
+          <mat-option [value]="lang.value" [class]="'lang-' + lang.value">{{ lang.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="code-block">
+    <div class="code-content">
+      @for (line of currentCode; track line.lineNumber) {
+        <div
+          class="code-line"
+          [class.highlighted]="line.lineNumber === codeLineNumber"
+        >
+          <span class="line-number">{{ line.lineNumber }}</span>
+          <span class="line-code">
+            @for (token of line.tokens; track $index) {
+              <span [class]="'token-' + token.type">{{ token.text }}</span>
+            }
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

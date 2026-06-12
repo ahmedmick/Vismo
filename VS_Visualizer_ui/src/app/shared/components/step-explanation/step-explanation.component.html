@@ -1,0 +1,11 @@
+<div class="step-explanation"
+     [class.state-found]="resultState === 'found'"
+     [class.state-not-found]="resultState === 'not-found'"
+     *ngIf="currentStepData()">
+  <div class="step-header">
+    <span class="step-number">Step {{ currentStep() + 1 }}</span>
+    <span class="step-total">of {{ totalSteps() }}</span>
+  </div>
+  <div class="step-description" [class.last-step]="isLastStep" [innerHTML]="formattedDescription">
+  </div>
+</div>

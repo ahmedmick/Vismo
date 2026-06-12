@@ -1,0 +1,39 @@
+.page {
+  min-height: 100vh;
+  background-color: #0a1929;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  color: #00bcd4;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 48px;
+}
+
+.coming-soon-container {
+  text-align: center;
+}
+
+.coming-soon-icon {
+  font-size: 96px;
+  width: 96px;
+  height: 96px;
+  color: #00bcd4;
+  margin-bottom: 24px;
+}
+
+.coming-soon-title {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.coming-soon-description {
+  color: #b0bec5;
+  font-size: 18px;
+}

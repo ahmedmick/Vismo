@@ -1,0 +1,45 @@
+<div class="document-sorter">
+  <div class="header">
+    <h3>{{ 'DOCUMENT_SORTER.TITLE' | translate }}</h3>
+    <div class="buttons">
+      <button mat-stroked-button (click)="prevStep()" [disabled]="isComplete()" class="action-button">
+        <mat-icon>skip_previous</mat-icon>
+        {{ 'DOCUMENT_SORTER.PREV_STEP' | translate }}
+      </button>
+      <button mat-stroked-button (click)="reset()" class="action-button">
+        <mat-icon>refresh</mat-icon>
+        {{ 'DOCUMENT_SORTER.RESET' | translate }}
+      </button>
+      <button mat-stroked-button (click)="nextStep()" [disabled]="isComplete()" class="action-button">
+        <mat-icon>skip_next</mat-icon>
+        {{ 'DOCUMENT_SORTER.NEXT_STEP' | translate }}
+      </button>
+      <button mat-raised-button (click)="autoSort()" [disabled]="isComplete()" class="action-button primary">
+        <mat-icon>play_arrow</mat-icon>
+        {{ 'DOCUMENT_SORTER.AUTO_SORT' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="status" *ngIf="isComplete()">
+    <mat-icon>check_circle</mat-icon>
+    {{ 'DOCUMENT_SORTER.COMPLETE' | translate }}
+  </div>
+
+  <div class="documents-grid">
+    @for (doc of documents(); track doc.id; let i = $index) {
+      <div 
+        class="document-card"
+        [class.comparing]="comparingIndices() && (comparingIndices()![0] === i || comparingIndices()![1] === i)"
+        [class.sorted]="isComplete()"
+      >
+        <div class="card-header">
+          <mat-icon>description</mat-icon>
+          <span class="score-badge">{{ doc.relevanceScore }}</span>
+        </div>
+        <h4 class="doc-title">{{ doc.title }}</h4>
+        <p class="doc-author">{{ doc.author }}</p>
+      </div>
+    }
+  </div>
+</div>
