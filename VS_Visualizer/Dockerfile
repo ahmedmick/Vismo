@@ -11,4 +11,4 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Explicitly mapping Railway variables to Java System properties
-ENTRYPOINT ["java", "-Dspring.datasource.url=${SPRING_DATASOURCE_URL}", "-Dspring.datasource.username=${SPRING_DATASOURCE_USERNAME}", "-Dspring.datasource.password=${SPRING_DATASOURCE_PASSWORD}", "-Dserver.port=${SERVER_PORT}", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
