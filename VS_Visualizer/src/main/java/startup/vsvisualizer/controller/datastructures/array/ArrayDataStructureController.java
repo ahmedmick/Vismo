@@ -10,8 +10,8 @@ import startup.vsvisualizer.service.datastructures.array.impl.ArrayDataStructure
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/data-structures/array")
 @CrossOrigin(origins = "https://visualizer-frontend-production-9da8.up.railway.app")
+@RequestMapping("/api/data-structures/array")
 public class ArrayDataStructureController {
 
     @Autowired

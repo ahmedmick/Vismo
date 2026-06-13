@@ -10,8 +10,8 @@ import startup.vsvisualizer.service.algorithms.bubblesort.impl.BubbleSortService
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/array")
 @CrossOrigin(origins = "https://visualizer-frontend-production-9da8.up.railway.app")
+@RequestMapping("/api/array")
 public class ArrayController {
 
     @Autowired
