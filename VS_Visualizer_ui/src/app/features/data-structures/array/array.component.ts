@@ -336,17 +336,17 @@ export class ArrayComponent {
   private getEndpoint(): string {
     switch (this.selectedOperation) {
       case 'access':
-        return '/api/data-structures/array/access';
+        return '/data-structures/array/access';
       case 'update':
-        return '/api/data-structures/array/update';
+        return '/data-structures/array/update';
       case 'insert':
-        return '/api/data-structures/array/insert';
+        return '/data-structures/array/insert';
       case 'delete':
-        return '/api/data-structures/array/delete';
+        return '/data-structures/array/delete';
       case 'search':
-        return '/api/data-structures/array/search';
+        return '/data-structures/array/search';
       case 'traverse':
-        return '/api/data-structures/array/traverse';
+        return '/data-structures/array/traverse';
       default:
         return '';
     }
