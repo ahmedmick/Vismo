@@ -19,6 +19,6 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   runBubbleSort(array: number[]): Observable<AlgorithmResponse> {
-    return this.http.post<AlgorithmResponse>(`${this.apiUrl}/array/bubble-sort`, { array, algorithmType: 'BUBBLE_SORT' });
+    return this.http.post<AlgorithmResponse>(`${this.apiUrl}/api/array/bubble-sort`, { array, algorithmType: 'BUBBLE_SORT' });
   }
 }
