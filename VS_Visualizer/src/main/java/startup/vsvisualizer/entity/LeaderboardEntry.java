@@ -14,7 +14,7 @@ public class LeaderboardEntry {
     private String playerName;
 
     @Column(name = "time_to_sort")
-    private Integer timeToSort;
+    private Double timeToSort;
 
     @Column(name = "swap_count")
     private Integer swapCount;
@@ -24,7 +24,7 @@ public class LeaderboardEntry {
 
     public LeaderboardEntry() {}
 
-    public LeaderboardEntry(String playerName, Integer timeToSort, Integer swapCount, Boolean wonAgainstAI) {
+    public LeaderboardEntry(String playerName, Double timeToSort, Integer swapCount, Boolean wonAgainstAI) {
         this.playerName = playerName;
         this.timeToSort = timeToSort;
         this.swapCount = swapCount;
@@ -47,11 +47,11 @@ public class LeaderboardEntry {
         this.playerName = playerName;
     }
 
-    public Integer getTimeToSort() {
+    public Double getTimeToSort() {
         return timeToSort;
     }
 
-    public void setTimeToSort(Integer timeToSort) {
+    public void setTimeToSort(Double timeToSort) {
         this.timeToSort = timeToSort;
     }
 
