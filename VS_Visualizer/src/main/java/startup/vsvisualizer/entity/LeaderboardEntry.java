@@ -9,9 +9,17 @@ public class LeaderboardEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "player_name")
     private String playerName;
+
+    @Column(name = "time_to_sort")
     private Integer timeToSort;
+
+    @Column(name = "swap_count")
     private Integer swapCount;
+
+    @Column(name = "won_againstai")
     private Boolean wonAgainstAI;
 
     public LeaderboardEntry() {}
