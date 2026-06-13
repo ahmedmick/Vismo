@@ -83,7 +83,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   fetchGameData(): void {
-    this.http.get<Document[]>(`${environment.apiUrl}/api/documents/game-data`).subscribe({
+    this.http.get<Document[]>(`${environment.apiUrl}/documents/game-data`).subscribe({
       next: (docs) => {
         this.originalDocuments = JSON.parse(JSON.stringify(docs));
         this.userDocuments.set(docs);
@@ -95,7 +95,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   fetchLeaderboard(): void {
-    this.http.get<LeaderboardEntry[]>(`${environment.apiUrl}/api/leaderboard`).subscribe({
+    this.http.get<LeaderboardEntry[]>(`${environment.apiUrl}/leaderboard`).subscribe({
       next: (entries) => this.leaderboard.set(entries),
       error: (err) => console.error('Error fetching leaderboard:', err),
     });
@@ -106,14 +106,14 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   clearLeaderboard(): void {
-    this.http.delete(`${environment.apiUrl}/api/leaderboard`).subscribe({
+    this.http.delete(`${environment.apiUrl}/leaderboard`).subscribe({
       next: () => this.leaderboard.set([]),
       error: (err) => console.error('Error clearing leaderboard:', err),
     });
   }
 
   deleteEntry(id: number): void {
-    this.http.delete(`${environment.apiUrl}/api/leaderboard/${id}`).subscribe({
+    this.http.delete(`${environment.apiUrl}/leaderboard/${id}`).subscribe({
       next: () => this.fetchLeaderboard(),
       error: (err) => console.error('Error deleting entry:', err),
     });
@@ -255,7 +255,7 @@ export class GameComponent implements OnInit, OnDestroy {
       wonAgainstAI: this.userWon(),
     };
 
-    this.http.post<LeaderboardEntry>(`${environment.apiUrl}/api/leaderboard`, entry).subscribe({
+    this.http.post<LeaderboardEntry>(`${environment.apiUrl}/leaderboard`, entry).subscribe({
       next: () => {
         this.fetchLeaderboard();
         this.stopCelebration();

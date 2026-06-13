@@ -35,7 +35,7 @@ export class DocumentSorterComponent implements OnInit {
   }
 
   fetchDocuments(): void {
-    this.http.get<Document[]>(`${environment.apiUrl}/api/documents`).subscribe({
+    this.http.get<Document[]>(`${environment.apiUrl}/documents`).subscribe({
       next: (docs) => {
         this.originalDocuments = JSON.parse(JSON.stringify(docs));
         this.documents.set(docs);

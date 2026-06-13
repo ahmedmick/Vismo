@@ -19,42 +19,42 @@ public class DocumentController {
     @Autowired
     private LeaderboardService leaderboardService;
 
-    @GetMapping("/api/documents")
+    @GetMapping("/documents")
     public List<Document> getDocuments() {
         return documentService.getDocuments();
     }
 
-    @GetMapping("/api/documents/race-data")
+    @GetMapping("/documents/race-data")
     public List<Document> getRaceData(@RequestParam(defaultValue = "50") int count) {
         return documentService.getRaceData(count);
     }
 
-    @GetMapping("/api/documents/game-data")
+    @GetMapping("/documents/game-data")
     public List<Document> getGameData() {
         return documentService.getGameData();
     }
 
-    @GetMapping("/api/documents/debug-data")
+    @GetMapping("/documents/debug-data")
     public List<Document> getDebugData() {
         return documentService.getDebugData();
     }
 
-    @PostMapping("/api/leaderboard")
+    @PostMapping("/leaderboard")
     public LeaderboardEntry saveLeaderboardEntry(@RequestBody LeaderboardEntry entry) {
         return leaderboardService.saveEntry(entry);
     }
 
-    @GetMapping("/api/leaderboard")
+    @GetMapping("/leaderboard")
     public List<LeaderboardEntry> getLeaderboard() {
         return leaderboardService.getTop10();
     }
 
-    @DeleteMapping("/api/leaderboard")
+    @DeleteMapping("/leaderboard")
     public void clearLeaderboard() {
         leaderboardService.clearLeaderboard();
     }
 
-    @DeleteMapping("/api/leaderboard/{id}")
+    @DeleteMapping("/leaderboard/{id}")
     public void deleteEntry(@PathVariable Integer id) {
         leaderboardService.deleteEntry(id);
     }
