@@ -121,7 +121,7 @@ export class AlgorithmRaceComponent implements OnInit, OnDestroy {
 
   fetchRaceData(): void {
     const count = Math.max(5, Math.min(1000, this.elementCount || 50));
-    this.http.get<Document[]>(`${environment.apiUrl}/api/documents/race-data?count=${count}`).subscribe({
+    this.http.get<Document[]>(`${environment.apiUrl}/documents/race-data?count=${count}`).subscribe({
       next: (docs) => {
         const scores = docs.map(d => d.relevanceScore);
         this.bubbleArray.set([...scores]);
