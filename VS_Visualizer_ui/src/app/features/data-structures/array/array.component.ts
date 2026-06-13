@@ -15,6 +15,7 @@ import { StepExplanationComponent } from '../../../shared/components/step-explan
 import { firstValueFrom } from 'rxjs';
 import { LanguageService } from '../../../core/services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../../environments/environment.production';
 
 interface VisualizationStep {
   stepNumber: number;
@@ -313,7 +314,7 @@ export class ArrayComponent {
       body.selectedType = this.selectedType;
 
       const response: AlgorithmResponse = await firstValueFrom(
-        this.http.post<AlgorithmResponse>(`http://localhost:9090${endpoint}`, body),
+        this.http.post<AlgorithmResponse>(`${environment.apiUrl}${endpoint}`, body),
       );
 
       this.visualizationService.loadSteps(response.steps);
