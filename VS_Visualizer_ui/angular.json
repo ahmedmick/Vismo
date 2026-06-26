@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/material-symbols/index.css",
               "src/material-theme.scss", 
               "src/styles.css"
             ],

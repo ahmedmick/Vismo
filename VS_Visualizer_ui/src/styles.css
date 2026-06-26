@@ -2,6 +2,10 @@
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+.material-icons {
+  font-family: 'Material Symbols Outlined' !important;
+}
+
 /* Force tooltip surface styles - must be after @import */
 .multiline-tooltip .mdc-tooltip__surface {
   white-space: pre-line !important;
