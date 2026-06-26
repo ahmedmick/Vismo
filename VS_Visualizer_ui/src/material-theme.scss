@@ -13,7 +13,7 @@ html {
         primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
-      typography: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif,
+      typography: Roboto,
       density: 0,
     )
   );
