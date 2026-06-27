@@ -1,9 +1,22 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 .material-icons {
   font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga' !important;
 }
 
 /* Force tooltip surface styles - must be after @import */
