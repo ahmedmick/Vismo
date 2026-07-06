@@ -9,7 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { interval, Subscription } from 'rxjs';
-import { environment } from '../../../../environments/environment.production';
+import { environment } from '../../../../environments/environment';
 
 interface Document {
   id: number;

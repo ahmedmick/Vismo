@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Matches all API endpoints
-                        .allowedOrigins("https://visualizer-frontend-production-9da8.up.railway.app")
+                        .allowedOrigins("https://visualizer-frontend-production-9da8.up.railway.app", "http://localhost:4200")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Explicitly include OPTIONS!
                         .allowedHeaders("*") // Allows headers like Content-Type, Authorization, etc.
                         .allowCredentials(true)

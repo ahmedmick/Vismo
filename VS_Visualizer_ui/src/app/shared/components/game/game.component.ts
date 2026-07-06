@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription, interval } from 'rxjs';
-import { environment } from '../../../../environments/environment.production';
+import { environment } from '../../../../environments/environment';
 
 interface Document {
   id: number;

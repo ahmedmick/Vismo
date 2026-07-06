@@ -1,59 +1,81 @@
-# FirstOfAllUi
+# Data Structure & Algorithm Visualizer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+A full-stack interactive educational app for visualizing data structures (arrays, linked lists) and algorithms (sorting, searching, graph) step-by-step.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+- **Frontend:** Angular 21, Angular Material, TypeScript, Vitest
+- **Backend:** Spring Boot 4.0.5, Java 21, MySQL, Maven
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) (v20+)
+- [Java 21+](https://adoptium.net/)
+- [MySQL 8.0+](https://dev.mysql.com/downloads/)
+- [Angular CLI](https://angular.dev/tools/cli): `npm install -g @angular/cli`
+
+---
+
+## Running Locally
+
+### 1. Database
+
+Create a MySQL database:
+
+```sql
+CREATE DATABASE vs_visualizer CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### 2. Backend
 
 ```bash
+cd VS_Visualizer
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
+
+Or run from IntelliJ:
+- Open `VS_Visualizer` as a project
+- Run → Edit Configurations → add `-Dspring.profiles.active=local` to VM options
+- Run `FirstOfAllApplication`
+
+The backend starts on `http://localhost:8080`.
+
+### 3. Frontend
+
+```bash
+cd VS_Visualizer_ui
+npm install   # first time only
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open `http://localhost:4200` in your browser.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Running with the Online Backend
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+To point the frontend at the deployed Railway backend instead of your local one:
 
 ```bash
-ng generate --help
+ng serve --configuration production
 ```
 
-## Building
+This uses the production environment file with the Railway API URL.
 
-To build the project run:
+---
+
+## Build for Production
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Build artifacts are stored in `dist/`.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Running Tests
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Uses [Vitest](https://vitest.dev/) as the test runner.
