@@ -1,4 +1,4 @@
-# Data Structure & Algorithm Visualizer
+# Vismo: Data Structure & Algorithm Visualizer
 
 A full-stack interactive educational app for visualizing data structures (arrays, linked lists) and algorithms (sorting, searching, graph) step-by-step.
 
